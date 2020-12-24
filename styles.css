@@ -1,0 +1,87 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #CCC;
+    min-height: 100vh;
+}
+
+.loader-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.loader-container div {
+    position: relative;
+    width: 75px;
+    height: 400px;
+    margin: 50px;
+    overflow: hidden;
+    border-radius: 75px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .5));
+    border: 2px solid #CCC;
+    box-shadow: 15px 15px 20px rgba(0, 0, 0, .1),
+                -15px -15px 20px #FFF,
+                inset -5px -5px 5px rgba(255, 255, 255, .5),
+                inset 5px 5px 5px rgba(0, 0, 0, .05);
+}
+
+.loader-container div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    border-radius: 75px;
+    box-shadow: 15px 15px 20px rgba(0, 0, 0, .1),
+                -15px -15px 20px #FFF,
+                inset -5px -5px 5px rgba(255, 255, 255, .5),
+                inset 5px 5px 5px rgba(0, 0, 0, .05);
+}
+
+.loader-container div::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 71.5px;
+    height: 71.5px;
+    background-color: #FFF;
+    border-radius: 50%;
+    box-shadow: inset -5px -5px 5px rgba(0, 0, 0, .2),
+                      0 425px 0 400px #0AF;
+    animation: bounce ease-in-out infinite;
+    transform: translateY(325px);
+    animation-delay: calc(.25s * var(--i));
+    animation-duration: calc(1s * var(--i));
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(325px);
+        filter: hue-rotate(90deg);
+    }
+
+    50% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(325px);
+        filter: hue-rotate(360deg);
+    }
+}
